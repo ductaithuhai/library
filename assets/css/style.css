@@ -132,6 +132,12 @@ table {
   border-spacing: 0;
 }
 
+body {
+  width: 1920px;
+  height: 1080px;
+  background-image: linear-gradient(to right, #93A5CF, #E4EfE9);
+}
+
 #add {
   width: 70px;
   height: 70px;
@@ -166,4 +172,28 @@ button#add:active {
 div.cross:hover {
   transform: rotate(100deg);
   transition: all 0.7s;
+}
+
+.inputfield {
+  display: none;
+  position: relative;
+  margin: auto;
+  top: 200px;
+  width: 400px;
+  height: 500px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  color: slategrey;
+  background-color: white;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+}
+
+.inputfield,
+.inputfield input {
+  position: relative;
+  font-size: 30px;
+  left: 10px;
 }
