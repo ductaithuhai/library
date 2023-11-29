@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My books</title>
-  <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-  <div class="container">
-    <button  id="add">
-      <div class="cross">+</div>
-    </button>
-  </div>
-  <div class="inputfield">
-    <div class="addTitle">Add Your Book Information</div>
-    <div class="bookInput">Book<input type="text" id="bookName" placeholder="Name of Book"></div>
-    <div class='authorInput'>Author<input type="text" id="authorName" placeholder="Name of Author"></div>
-    <div class='pagesInput'>Number of pages<input type="text" id="pagesCount" placeholder="Pages"></div>
-    <div class='statusInput'>Your status<input type="text" id="yourProcess" placeholder="Status"></div>
-    <button class="done">Done</button>
-  </div>
-  <script src="./assets/js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My books</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="header">
+        <div class="siteName">My Reading List</div>
+        <div class="bookCount">
+          <div class="readed">Read:</div>
+          <div class="unread">Unread:</div>
+          <div class="reading">Reading:</div>
+          Book Count
+        </div>
+      </div>
+      <button id="add">
+        <div class="cross">+</div>
+      </button>
+      <div id="bookZone"></div>
+    </div>
+    <div class="inputfield">
+      <div class="addTitle">Add Your Book Information</div>
+      <div class="bookInput">
+        Book<input type="text" id="bookName" placeholder="Name of Book" />
+      </div>
+      <div class="authorInput">
+        Author<input type="text" id="authorName" placeholder="Name of Author" />
+      </div>
+      <div class="pagesInput">
+        Number of pages<input type="text" id="pagesCount" placeholder="Pages" />
+      </div>
+      <div class="statusInput">
+        Your status<input type="text" id="yourProcess" placeholder="Status" />
+      </div>
+      <button class="done">Done</button>
+    </div>
+    <script src="./assets/js/main.js"></script>
+  </body>
 </html>
