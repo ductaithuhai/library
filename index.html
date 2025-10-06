@@ -9,12 +9,15 @@
   <body>
     <div class="container">
       <div id="header">
-        <div class="siteName">My Reading List</div>
+        <div class="site">
+          <div class="siteName">My Reading List</div>
+          <img src="./assets/logo/logo.png" alt="simple logo" class="logo" width="40" height="40" />
+        </div>
         <div class="bookCount">
           <div class="readed">Read:</div>
           <div class="unread">Unread:</div>
           <div class="reading">Reading:</div>
-          Book Count
+          Book Count:
         </div>
       </div>
       <button id="add">
@@ -23,21 +26,26 @@
       <div id="bookZone"></div>
     </div>
     <div class="inputfield">
-      <div class="addTitle">Add Your Book Information</div>
-      <div class="bookInput">
-        Book<input type="text" id="bookName" placeholder="Name of Book" />
-      </div>
-      <div class="authorInput">
-        Author<input type="text" id="authorName" placeholder="Name of Author" />
-      </div>
-      <div class="pagesInput">
-        Number of pages<input type="text" id="pagesCount" placeholder="Pages" />
-      </div>
-      <div class="statusInput">
-        Your status<input type="text" id="yourProcess" placeholder="Status" />
-      </div>
-      <button class="done">Done</button>
+  <div class="form-box">
+    <div class="addTitle">Add Your Book Information</div>
+    <div class="bookInput">
+      Book<input type="text" id="bookName" placeholder="Name of Book" />
     </div>
+    <div class="authorInput">
+      Author<input type="text" id="authorName" placeholder="Name of Author" />
+    </div>
+    <div class="pagesInput">
+      Number of pages<input type="text" id="pagesCount" placeholder="Pages" />
+    </div>
+    <div class="statusInput">
+      Your status<input type="text" id="yourProcess" placeholder="Status" />
+    </div>
+    <button class="done">Done</button>
+  </div>
+</div>
+<footer id="footer">
+  &copy; 2024 My Reading List. All rights reserved.
+</footer>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
