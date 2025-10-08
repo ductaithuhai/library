@@ -5,24 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My books</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   </head>
   <body>
     <div class="container">
+      <div class="saveOptions">
+        <div class="select">
+            <label class="localS">
+              <input type="radio" name="saveType" value="local" checked> Lưu trên máy
+              <i class="fa-solid fa-file"></i>
+            </label>
+  <label class="googleS">
+    <input type="radio" name="saveType" value="google"> Lưu lên Google
+    <i class="fa-brands fa-google"></i>
+  </label>
+        </div>
+  <button id="saveLibrary">Lưu thư viện</button>
+</div>
+
       <div id="header">
         <div class="site">
-          <div class="siteName">My Reading List</div>
-          <img src="./assets/logo/logo.png" alt="simple logo" class="logo" width="40" height="40" />
+          <img src="./assets/logo/logo.png" alt="simple logo" class="logo" width="100"/>
+           <div class="siteName">My Reading List</div>
         </div>
-        <div class="bookCount">
-          <div class="readed">Read:</div>
-          <div class="unread">Unread:</div>
-          <div class="reading">Reading:</div>
-          Book Count:
+        <button id="add">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+        <div id="bookCount">
+          <div class="readed">Readed:</div>
+          <div class="notReaded">Unread:</div>
         </div>
       </div>
-      <button id="add">
-        <div class="cross">+</div>
-      </button>
       <div id="bookZone"></div>
     </div>
     <div class="inputfield">
@@ -37,9 +50,6 @@
     <div class="pagesInput">
       Number of pages<input type="text" id="pagesCount" placeholder="Pages" />
     </div>
-    <div class="statusInput">
-      Your status<input type="text" id="yourProcess" placeholder="Status" />
-    </div>
     <button class="done">Done</button>
   </div>
 </div>
@@ -47,5 +57,45 @@
   &copy; 2024 My Reading List. All rights reserved.
 </footer>
     <script src="./assets/js/main.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD0pGn2y0YHwOGWNNTrnz3xTBIwkBUDDNw",
+    authDomain: "library-list-55faa.firebaseapp.com",
+    projectId: "library-list-55faa",
+    storageBucket: "library-list-55faa.firebasestorage.app",
+    messagingSenderId: "476285309191",
+    appId: "1:476285309191:web:16c0b16a9fae5dfccfb5a2",
+    measurementId: "G-7GMF7Z5VZY"
+  };
+
+  // Khởi tạo Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ====== HÀM LƯU DỮ LIỆU LÊN FIREBASE ======
+  async function saveToFirebase(library) {
+    const colRef = collection(db, "books");
+    for (const book of library) {
+      await addDoc(colRef, book);
+    }
+    alert("📚 Đã lưu danh sách lên Firebase!");
+  }
+
+  // ====== HÀM TẢI DỮ LIỆU TỪ FIREBASE ======
+  async function loadFromFirebase() {
+    const colRef = collection(db, "books");
+    const snapshot = await getDocs(colRef);
+    const books = snapshot.docs.map(doc => doc.data());
+    console.log("🔥 Dữ liệu từ Firebase:", books);
+    return books;
+  }
+
+  // 🔧 Gắn ra global để main.js có thể gọi
+  window.saveToFirebase = saveToFirebase;
+  window.loadFromFirebase = loadFromFirebase;
+</script>
   </body>
 </html>

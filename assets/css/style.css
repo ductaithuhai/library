@@ -53,10 +53,9 @@ h1, h2, h3, h4, h5, h6, p, figure {
 :root {
   --container-max: 1200px;
   --container-padding: 1rem;
-  --gap: 1rem;
+  --gap: 1.5rem;
   --radius: 12px;
   --shadow: 0 4px 12px rgba(0,0,0,0.05);
-
   --bg: #A67B5B;
   --body-bg: #ffffff;
   --text: #6F4E37;
@@ -85,7 +84,7 @@ body {
 
 #header {
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -146,14 +145,87 @@ main {
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.5rem; }
 
-.site {
-  width: 30%;
-  display: flex;
+.saveOptions {
+  position: fixed;
+  z-index: 1;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--muted);
+  width: 50%;
+  height: 50%;
+  border-radius: var(--radius);
+  border: #6F4E37 1px solid;
   flex-direction: column;
-  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+}
+.select {
+  display: flex; 
+  gap:20px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text);
+}
+.localS, .googleS {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  gap:10px;
+  cursor: pointer;
+}
+.fa-file, .fa-google {
+  font-size: 4rem;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+#saveLibrary {
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: var(--muted);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.site {
+  width: 20%;
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
+#bookCount {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+#add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--muted);
+  border: none;
+  width: 100px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+#add:hover{
+  background-color: aquamarine;
+}
+#add i {
+  font-size: 2rem;
+  color: var(--text);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
 
+#add:hover i {
+  color: var(--primary);
+  transform: rotate(360deg);
+}
 .siteName {
   font-size: 1.5rem;
   font-weight: bold;
@@ -161,17 +233,30 @@ main {
 }
 
 .bookCard {
+  display: flex ;
+  flex-direction: row; 
+  justify-content: space-between;
   width: 300px;
   height: 200px;
   border-radius: var(--radius);
   background: var(--card);
-  color: #3b2f2f;
-  text-align: left;
   margin: 1rem auto;
   padding: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+.content {
+  text-color: #3b2f2f;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 .bookCard:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
@@ -179,6 +264,69 @@ main {
 
 .bookCard div { font-size: 20px; }
 .bookCard .bookName { font-size: 28px; font-weight: bold; }
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.3s;
+  transition: .25s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
 
 #bookZone {
   display: grid;
@@ -216,7 +364,6 @@ main {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Tiêu đề popup */
 .inputfield .addTitle {
   font-size: 1.3rem;
   font-weight: bold;
@@ -225,7 +372,6 @@ main {
   color: var(--primary);
 }
 
-/* Các ô nhập */
 .inputfield .bookInput,
 .inputfield .authorInput,
 .inputfield .pagesInput,
@@ -245,7 +391,6 @@ main {
   color: #333;
 }
 
-/* Nút Done */
 .inputfield .done {
   margin-top: 0.5rem;
   padding: 0.7rem;
